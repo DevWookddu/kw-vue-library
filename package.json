@@ -9,12 +9,6 @@
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
     "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook --no-manager-cache"
   },
-  "main": "dist/kw-vue-library.common.js",
-  "files": [
-    "dist",
-    "src",
-    "ide"
-  ],
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^2.6.14",
@@ -67,6 +61,12 @@
   "optionalDependencies": {
     "fsevents": "*"
   },
+  "main": "dist/kw-vue-library.common.js",
+  "files": [
+    "dist",
+    "src",
+    "ide"
+  ],
   "sass": "src/index.scss",
   "source": "src/index.ts",
   "style": "dist/kw-vue-library.css",
