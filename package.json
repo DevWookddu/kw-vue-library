@@ -7,8 +7,14 @@
     "build": "vue-cli-service build --target lib src/main.ts && rm ./dist/demo.html",
     "lint": "vue-cli-service lint",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
-    "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook"
+    "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook --no-manager-cache"
   },
+  "main": "dist/kw-vue-library.common.js",
+  "files": [
+    "dist",
+    "src",
+    "ide"
+  ],
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^2.6.14",
@@ -18,6 +24,11 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^6.5.5",
+    "@storybook/addon-links": "^6.5.5",
+    "@storybook/builder-webpack5": "^6.5.0-rc.1",
+    "@storybook/manager-webpack5": "^6.5.0-rc.1",
+    "@storybook/vue": "^6.5.5",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
@@ -38,7 +49,9 @@
     "sass": "^1.52.1",
     "sass-loader": "^12.0.0",
     "typescript": "~4.5.5",
-    "vue-template-compiler": "^2.6.14"
+    "vue-cli-plugin-storybook": "~2.1.0",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.72.1"
   },
   "husky": {
     "hooks": {
@@ -51,12 +64,9 @@
       "git add"
     ]
   },
-  "main": "dist/kw-vue-library.common.js",
-  "files": [
-    "dist",
-    "src",
-    "ide"
-  ],
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
   "sass": "src/index.scss",
   "source": "src/index.ts",
   "style": "dist/kw-vue-library.css",
