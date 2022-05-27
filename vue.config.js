@@ -39,4 +39,9 @@ module.exports = defineConfig({
       },
     },
   },
+  pluginOptions: {
+    storybook: {
+      allowedPlugins: ['define'],
+    },
+  },
 });
