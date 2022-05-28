@@ -97,10 +97,19 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { IdeComponent } from '../decorators/IdeComponent';
+import { IdeProp } from '../decorators/IdeProp';
 
-@Component
+@Component({
+  name: 'HelloWorld',
+})
+@IdeComponent({
+  description: 'HelloWorld',
+})
 export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
+  @Prop()
+  @IdeProp({ type: 'string' })
+  private msg!: string;
 
   private a() {
     this.$emit('zz');
