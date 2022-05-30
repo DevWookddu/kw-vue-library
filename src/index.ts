@@ -1,4 +1,5 @@
 import './assets/css/normalize.css';
+import './assets/css/tailwind.css';
 import { installFactory } from './utils/build-plugins';
 import { Components } from './components/index';
 import { Plugins } from './plugins/index';
