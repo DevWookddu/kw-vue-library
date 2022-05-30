@@ -1,6 +1,6 @@
 import Dayjs from 'dayjs';
 import Vue from 'vue';
-export * from './index';
+import './index';
 
 const DayjsPlugin = {
   install(vue: typeof Vue) {
