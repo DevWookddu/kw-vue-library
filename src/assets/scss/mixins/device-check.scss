@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+@mixin for-ios {
+  @supports (-webkit-touch-callout: none) {
+    @content;
+  }
+}
+
+@mixin for-aos {
+  @media (pointer: coarse) {
+    @supports not (-webkit-touch-callout: none) {
+      @content;
+    }
+  }
+}

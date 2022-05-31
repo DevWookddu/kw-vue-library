@@ -4,12 +4,12 @@ import { linkTo } from '@storybook/addon-links';
 import ExampleComponent from '../components/ExampleComponent.vue';
 
 export default {
-  title: 'Button',
+  title: 'Example',
 };
 
 export const withText = () => ({
   components: { ExampleComponent },
-  template: '<ExampleComponent @click="action">withText</ExampleComponent>',
+  template: /* html */ `<ExampleComponent @click="action">withText</ExampleComponent>`,
   methods: { action: action('clicked') },
 });
 

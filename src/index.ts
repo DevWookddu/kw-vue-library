@@ -3,6 +3,7 @@ import './assets/css/tailwind.css';
 import { installFactory } from './utils/build-plugins';
 import { Components } from './components/index';
 import { Plugins } from './plugins/index';
+import './assets/scss/main.scss';
 
 const NAME = 'KwVueLibrary';
 
