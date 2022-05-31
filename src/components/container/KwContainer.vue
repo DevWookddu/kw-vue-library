@@ -9,8 +9,6 @@
     </div>
     <div class="body" ref="refBody">
       <slot name="body" />
-      isMove: {{ isFlickMove }} / isFlicked : {{ isFlicked }} / flickStartX : {{ flickStartX }} / currentFlickX :
-      {{ currentFlickX }}
     </div>
     <div v-if="$slots['footer']" class="footer" :class="{ shadow: hasBodyScroll }">
       <slot name="footer" />
@@ -74,28 +72,28 @@ export default class KwContainer extends Vue {
   private flickStartX = 0;
   private flickStartY = 0;
   private isFlicked = false;
-  private currentFlickX = 0;
-  private currentFlickY = 0;
+  private moveX = 0;
+  private moveY = 0;
 
   get flickingPosition() {
-    const { flickFrom, isFlickMove, isFlicked, currentFlickX, currentFlickY } = this;
+    const { flickFrom, isFlickMove, isFlicked, moveX, moveY } = this;
     if (!flickFrom) return null;
 
     switch (flickFrom) {
       case 'left': {
-        const flickX = currentFlickX === 0 ? '' : currentFlickX > 0 ? `+ ${currentFlickX}px` : `${currentFlickX}px`;
-        if (isFlickMove) {
+        const flickX = moveX === 0 ? '' : moveX > 0 ? `+ ${moveX}px` : `${moveX}px`;
+        if (isFlickMove && Math.abs(moveY) < 52 && Math.abs(moveX) > 52) {
           return { transform: `translate(calc(${isFlicked ? '' : '-100%'} ${flickX}), 0)` };
         } else {
           return { transform: `translate(${isFlicked ? 0 : '-100%'}, 0)` };
         }
       }
       case 'right':
-        return { transform: `translate(calc(100% + ${currentFlickX}px), 0)` };
+        return { transform: `translate(calc(100% + ${moveX}px), 0)` };
       case 'top':
-        return { transform: `translate(0, calc(100% + ${currentFlickY}px)` };
+        return { transform: `translate(0, calc(100% + ${moveY}px)` };
       case 'bottom':
-        return { transform: `translate(0, calc(-100% + ${currentFlickY}px)` };
+        return { transform: `translate(0, calc(-100% + ${moveY}px)` };
     }
 
     return null;
@@ -202,13 +200,15 @@ export default class KwContainer extends Vue {
   private elFlickMoveListener(e: Event) {
     if (this.isFlickMove) {
       const { x, y } = getXY(e);
+      const moveX = x - this.flickStartX;
+      const moveY = y - this.flickStartY;
       if (this.isFlicked) {
-        this.currentFlickX = x - this.flickStartX;
-        this.currentFlickY = y - this.flickStartY;
+        this.moveX = moveX;
+        this.moveY = moveY;
       } else {
         this.getFlickContainers().forEach((node) => {
-          node.currentFlickX = x - this.flickStartX;
-          node.currentFlickY = y - this.flickStartY;
+          node.moveX = moveX;
+          node.moveY = moveY;
         });
       }
     }
@@ -230,6 +230,7 @@ export default class KwContainer extends Vue {
     let leftOrRight: LeftOrRight = false;
 
     if (isSnap) {
+      // console.log(moveX);
       if (innerWidth / 8 < moveX || 52 < moveX) {
         leftOrRight = toRight ? 'right' : 'left';
       }
@@ -263,8 +264,8 @@ export default class KwContainer extends Vue {
           node.isFlicked = false;
         }
     }
-    node.currentFlickX = 0;
-    node.currentFlickY = 0;
+    node.moveX = 0;
+    node.moveY = 0;
   }
 }
 </script>

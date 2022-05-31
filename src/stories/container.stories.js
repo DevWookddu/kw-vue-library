@@ -9,12 +9,29 @@ export default {
 export const Default = () => ({
   components: { KwContainer },
   template: /* html */ `
-    <KwContainer use-header-shadow class="main" @flick-move="onFlickMove" @flick-end="onFlickEnd">
+    <KwContainer use-header-shadow class="main">
+      <template #header>
+        Header 스크롤시 그림자 생성
+      </template>
+      <template #body>
+        <div style="height: 1000px">Body</div>
+      </template>
+      <template #footer>
+        Footer 스크롤 존재시 그림자 생성
+      </template>
+    </KwContainer>
+  `,
+});
+
+export const UseSnap = () => ({
+  components: { KwContainer },
+  template: /* html */ `
+    <KwContainer use-header-shadow class="main">
       <template #header>
         Header
       </template>
       <template #body>
-        <div style="height: 700px">Body</div>
+        <div style="height: 1000px">마우스 드래그 또는 터치드래그시 인터랙션</div>
       </template>
       <template #footer>
         Footer
@@ -30,20 +47,5 @@ export const Default = () => ({
   `,
   methods: {
     action: action('clicked'),
-    onFlickMove({ moveX }) {
-      this.flickX = moveX;
-    },
-    onFlickEnd({ leftOrRight }) {
-      if (leftOrRight === 'right') {
-        this.flickX = 0;
-      } else {
-        this.flickX = null;
-      }
-    },
-  },
-  data() {
-    return {
-      flickX: null,
-    };
   },
 });
