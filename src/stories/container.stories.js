@@ -48,4 +48,7 @@ export const UseSnap = () => ({
   methods: {
     action: action('clicked'),
   },
+  mounted() {
+    this.$toast('하이루');
+  },
 });
