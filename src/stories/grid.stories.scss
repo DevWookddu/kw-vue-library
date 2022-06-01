@@ -1,0 +1,10 @@
+.grid-story-app {
+  .kw-row > * {
+    text-align: center;
+    background-color: #ddd;
+  }
+
+  .kw-row + .kw-row {
+    margin-top: 20px;
+  }
+}

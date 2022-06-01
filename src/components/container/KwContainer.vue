@@ -1,17 +1,23 @@
 <template>
   <div
     class="kw-container"
-    :class="[`flick-from-${flickFrom}`, { 'flick-move': isFlickMove }]"
+    :class="[`flick-from-${flickFrom}`, { 'flick-move': isFlickMove }, breakpoint]"
     :style="[elStyle, flickingPosition]"
   >
     <div v-if="$slots['header']" class="header" :class="{ shadow: useHeaderShadow && bodyScrollPosition }">
-      <slot name="header" />
+      <div class="slot-wrapper" :style="{ maxWidth: appMaxWidth }">
+        <slot name="header" />
+      </div>
     </div>
     <div class="body" ref="refBody">
-      <slot name="body" />
+      <div class="slot-wrapper" :style="{ maxWidth: appMaxWidth }">
+        <slot name="body" />
+      </div>
     </div>
     <div v-if="$slots['footer']" class="footer" :class="{ shadow: hasBodyScroll }">
-      <slot name="footer" />
+      <div class="slot-wrapper" :style="{ maxWidth: appMaxWidth }">
+        <slot name="footer" />
+      </div>
     </div>
     <div ref="refContainers">
       <slot name="containers" />
@@ -23,6 +29,7 @@
 import { IdeComponent } from '@/decorators/IdeComponent';
 import { IdeProp } from '@/decorators/IdeProp';
 import { Component, Prop, Ref, Vue } from 'vue-property-decorator';
+import KwUi from '../KwUi';
 
 function getXY(e: Event) {
   if (window.TouchEvent && e instanceof TouchEvent) {
@@ -47,7 +54,7 @@ type UpOrDown = 'up' | 'down' | false;
   name: 'KwContainer',
 })
 @IdeComponent({ description: 'KwContainer Description' })
-export default class KwContainer extends Vue {
+export default class KwContainer extends KwUi {
   @Ref() private readonly refBody!: HTMLDivElement;
   @Ref() private readonly refContainers!: { children: Array<{ __vue__: Vue }> };
 
@@ -271,6 +278,11 @@ export default class KwContainer extends Vue {
 </script>
 
 <style scoped lang="scss">
+.slot-wrapper {
+  margin: 0 auto;
+  width: 100%;
+}
+
 .kw-container {
   position: fixed;
   z-index: 2;
