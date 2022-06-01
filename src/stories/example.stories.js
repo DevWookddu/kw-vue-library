@@ -4,7 +4,7 @@ import { linkTo } from '@storybook/addon-links';
 import ExampleComponent from '../components/ExampleComponent.vue';
 
 export default {
-  title: 'Example',
+  title: 'components/Example',
 };
 
 export const withText = () => ({
