@@ -4,7 +4,7 @@ import KwApp from '../components/container/KwApp.vue';
 import './grid.stories.scss';
 
 export default {
-  title: 'grid',
+  title: 'components/GridSystem',
 };
 
 export const Default = () => ({

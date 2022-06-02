@@ -9,6 +9,9 @@ import KwRow from './grid/KwRow.vue';
 
 import KwButton from './KwButton.vue';
 
+import KwInputField from './input/KwInputField.vue';
+import KwSelect from './input/KwSelect.vue';
+
 const Components = pluginFactory({
   components: {
     KwApp,
@@ -19,6 +22,9 @@ const Components = pluginFactory({
     KwColumn,
 
     KwButton,
+
+    KwInputField,
+    KwSelect,
   },
 });
 

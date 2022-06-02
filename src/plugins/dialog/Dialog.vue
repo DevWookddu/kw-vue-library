@@ -1,30 +1,38 @@
 <template>
-  <div v-show="show" class="dialog">
-    <div class="dialog-container">
-      <div v-if="title" class="dialog-title">
-        {{ title }}
-      </div>
-      <div class="dialog-body">
-        {{ message }}
-      </div>
-      <div class="dialog-buttons" :class="type">
-        <kw-button v-if="type === 'confirm'" variant="secondary" @click="clickButton('cancel')">
-          {{ cancelText }}
-        </kw-button>
-        <kw-button @click="clickButton('ok')">{{ okText }}</kw-button>
+  <KwApp v-show="show">
+    <div class="dialog">
+      <div class="dialog-container">
+        <div v-if="title" class="dialog-title">
+          {{ title }}
+        </div>
+        <div class="dialog-body">
+          {{ message }}
+        </div>
+        <div class="dialog-buttons" :class="type">
+          <KwButton v-if="type === 'confirm'" variant="secondary" @click="clickButton('cancel')">
+            {{ cancelText }}
+          </KwButton>
+          <kw-button @click="clickButton('ok')">{{ okText }}</kw-button>
+        </div>
       </div>
     </div>
-  </div>
+  </KwApp>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { DialogParam } from './';
+import KwApp from '../../components/container/KwApp.vue';
+import KwButton from '../../components/KwButton.vue';
 
 type Resolve = (type: string) => void;
 
 @Component({
   name: 'Dialog',
+  components: {
+    KwApp,
+    KwButton,
+  },
 })
 export default class Dialog extends Vue {
   private show = false;

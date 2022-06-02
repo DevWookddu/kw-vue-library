@@ -51,5 +51,8 @@ export default class KwApp extends Vue {
   position: fixed;
   width: 100vw;
   height: 100%;
+  top: 0;
+  left: 0;
+  padding: 10px;
 }
 </style>

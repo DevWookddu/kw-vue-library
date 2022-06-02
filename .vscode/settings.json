@@ -5,6 +5,5 @@
     "html",
     "typescript",
   ],
-  "files.eol": "\n",
   "vetur.experimental.templateInterpolationService": true
 }

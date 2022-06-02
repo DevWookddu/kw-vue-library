@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import Vue from 'vue';
+
 export interface DialogParam {
   title?: string;
   message: string;
