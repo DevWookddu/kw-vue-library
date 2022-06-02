@@ -5,11 +5,11 @@ import { Vue, Component, InjectReactive, Inject } from 'vue-property-decorator';
 })
 export default class KwUi extends Vue {
   @Inject()
-  private appMaxWidth!: string | number;
+  protected appMaxWidth!: string | number;
 
   @InjectReactive()
-  public breakpoint!: 'sm' | 'md' | 'lg';
+  protected breakpoint!: 'sm' | 'md' | 'lg';
 
   @InjectReactive()
-  public vw!: number;
+  protected vw!: number;
 }

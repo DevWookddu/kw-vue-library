@@ -5,17 +5,17 @@
     :style="[elStyle, flickingPosition]"
   >
     <div v-if="$slots['header']" class="header" :class="{ shadow: useHeaderShadow && bodyScrollPosition }">
-      <div class="slot-wrapper" :style="{ maxWidth: appMaxWidth }">
+      <div class="slot-wrapper" :style="{ maxWidth: mw }">
         <slot name="header" />
       </div>
     </div>
     <div class="body" ref="refBody">
-      <div class="slot-wrapper" :style="{ maxWidth: appMaxWidth }">
+      <div class="slot-wrapper" :style="{ maxWidth: mw }">
         <slot name="body" />
       </div>
     </div>
     <div v-if="$slots['footer']" class="footer" :class="{ shadow: hasBodyScroll }">
-      <div class="slot-wrapper" :style="{ maxWidth: appMaxWidth }">
+      <div class="slot-wrapper" :style="{ maxWidth: mw }">
         <slot name="footer" />
       </div>
     </div>
@@ -64,6 +64,13 @@ export default class KwContainer extends KwUi {
 
   @Prop({ type: Object })
   private elStyle!: Record<string, unknown>;
+
+  @Prop({ type: String })
+  private containerMaxWidth!: string;
+
+  get mw() {
+    return this.containerMaxWidth || this.appMaxWidth;
+  }
 
   @Prop({ type: String })
   private flickFrom!: 'left' | 'bottom' | 'top' | 'right';
@@ -148,6 +155,7 @@ export default class KwContainer extends KwUi {
       const remainScroll = maxScroll - scrollTop;
       const currentYPercent = scrollTop / maxScroll;
       this.bodyScrollPosition = scrollTop;
+      console.log(scrollTop);
       this.$emit('scroll', {
         scrollTop,
         remainScroll,
@@ -327,6 +335,7 @@ export default class KwContainer extends KwUi {
   box-sizing: border-box;
   flex: 1;
   overflow-y: auto;
+  scrollbar-width: none;
 
   @include for-ios {
     padding-bottom: constant(safe-area-inset-bottom);
