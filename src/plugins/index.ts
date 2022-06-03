@@ -1,4 +1,4 @@
-import { pluginFactory } from '@/utils/build-plugins';
+import { pluginFactory } from '../utils/build-plugins';
 
 import DayjsPlugin from './dayjs/DayjsPlugin';
 import ToastPlugin from './toast/ToastPlugin';

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { IdeComponent } from '@/decorators/IdeComponent';
+import { IdeComponent } from '../../decorators/IdeComponent';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({

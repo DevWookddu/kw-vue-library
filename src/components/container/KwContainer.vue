@@ -26,8 +26,8 @@
 </template>
 
 <script lang="ts">
-import { IdeComponent } from '@/decorators/IdeComponent';
-import { IdeProp } from '@/decorators/IdeProp';
+import { IdeComponent } from '../../decorators/IdeComponent';
+import { IdeProp } from '../../decorators/IdeProp';
 import { Component, Prop, Ref, Vue } from 'vue-property-decorator';
 import KwUi from '../KwUi';
 
