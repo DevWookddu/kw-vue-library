@@ -1,0 +1,9 @@
+{
+  "eslint.validate": [
+    "vue",
+    "javascript",
+    "html",
+    "typescript",
+  ],
+  "vetur.experimental.templateInterpolationService": true
+}
