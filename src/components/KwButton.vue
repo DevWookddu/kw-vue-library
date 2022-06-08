@@ -1,17 +1,26 @@
 <template>
-  <button v-on="$listeners" :type="type" class="kw-button" :class="[variant, size, { block }]" :disabled="disabled">
+  <button
+    ref="refButton"
+    v-on="$listeners"
+    :type="type"
+    class="kw-button"
+    :class="[variant, size, { block }]"
+    :disabled="disabled"
+  >
     <slot />
   </button>
 </template>
 
 <script lang="ts">
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Ref } from 'vue-property-decorator';
 import KwUi from './KwUi';
 
 @Component({
   name: 'KwButton',
 })
 export default class KwButton extends KwUi {
+  @Ref() private readonly refButton!: HTMLButtonElement;
+
   @Prop({ type: String, default: 'button' })
   private readonly type!: 'button' | 'submit';
 
@@ -33,6 +42,14 @@ export default class KwButton extends KwUi {
   // 블록화 여부
   @Prop({ type: Boolean, default: false })
   private readonly block!: boolean;
+
+  public click() {
+    this.refButton.click();
+  }
+
+  public focus() {
+    this.refButton.focus();
+  }
 }
 </script>
 

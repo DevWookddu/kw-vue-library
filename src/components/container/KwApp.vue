@@ -31,17 +31,20 @@ export default class KwApp extends Vue {
 
   created() {
     this.vw = window.innerWidth;
-    window.addEventListener('resize', () => {
-      const vw = window.innerWidth;
-      this.vw = vw;
-      if (vw <= this.smWidth) {
-        this.breakpoint = 'sm';
-      } else if (vw <= this.mdWidth) {
-        this.breakpoint = 'md';
-      } else {
-        this.breakpoint = 'lg';
-      }
-    });
+    this.checkBreakpoint();
+    window.addEventListener('resize', this.checkBreakpoint);
+  }
+
+  private checkBreakpoint() {
+    const vw = window.innerWidth;
+    this.vw = vw;
+    if (vw <= this.smWidth) {
+      this.breakpoint = 'sm';
+    } else if (vw <= this.mdWidth) {
+      this.breakpoint = 'md';
+    } else {
+      this.breakpoint = 'lg';
+    }
   }
 }
 </script>

@@ -1,6 +1,12 @@
 <template>
   <div class="kw-select">
-    <select class="select-button" :value="model" :disabled="disabled" @change="onChange($event.target.value)">
+    <select
+      ref="refSelect"
+      class="select-button"
+      :value="model"
+      :disabled="disabled"
+      @change="onChange($event.target.value)"
+    >
       <option disabled selected>선택</option>
       <option
         v-for="option in options"
@@ -15,13 +21,16 @@
 </template>
 
 <script lang="ts">
-import { Component, ModelSync, Prop, Watch } from 'vue-property-decorator';
+import { Component, ModelSync, Prop, Watch, Ref } from 'vue-property-decorator';
 import KwUi from '../KwUi';
 
 @Component({
   name: 'KwSelect',
 })
 export default class KwSelect extends KwUi {
+  @Ref()
+  private readonly refSelect!: HTMLSelectElement;
+
   @ModelSync('value', 'change')
   private model!: unknown;
 
@@ -43,6 +52,14 @@ export default class KwSelect extends KwUi {
   @Watch('model')
   private watchModel() {
     this.$forceUpdate();
+  }
+
+  public focus() {
+    this.refSelect.focus();
+  }
+
+  public click() {
+    this.refSelect.click();
   }
 
   private onChange(value: string) {
