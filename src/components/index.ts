@@ -1,5 +1,7 @@
 import { pluginFactory } from '../utils/build-plugins';
 
+import KwUi from './KwUi';
+
 import KwApp from './container/KwApp.vue';
 import KwContainer from './container/KwContainer.vue';
 import KwContainerTransition from './container/KwContainerTransition.vue';
@@ -7,11 +9,17 @@ import KwContainerTransition from './container/KwContainerTransition.vue';
 import KwColumn from './grid/KwColumn.vue';
 import KwRow from './grid/KwRow.vue';
 
-import KwButton from './KwButton.vue';
-import KwDateTimePicker from './KwDateTimePicker.vue';
+import KwButtonVue from './KwButton.vue';
+export * from './KwButton';
 
-import KwInputField from './input/KwInputField.vue';
-import KwSelect from './input/KwSelect.vue';
+import KwDateTimePickerVue from './KwDateTimePicker.vue';
+export * from './KwDateTimePicker';
+
+import KwInputFieldVue from './input/KwInputField.vue';
+export * from './input/KwInputField';
+
+import KwSelectVue from './input/KwSelect.vue';
+export * from './input/KwSelect';
 
 const Components = pluginFactory({
   components: {
@@ -22,12 +30,12 @@ const Components = pluginFactory({
     KwRow,
     KwColumn,
 
-    KwButton,
+    KwButton: KwButtonVue,
 
-    KwInputField,
-    KwSelect,
-    KwDateTimePicker,
+    KwInputField: KwInputFieldVue,
+    KwSelect: KwSelectVue,
+    KwDateTimePicker: KwDateTimePickerVue,
   },
 });
 
-export { Components };
+export { Components, KwUi };

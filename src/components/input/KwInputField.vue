@@ -1,6 +1,7 @@
 <template>
   <div class="kw-input-field">
     <input
+      ref="refInput"
       class="input-field"
       :type="type"
       :value="model"
@@ -13,13 +14,16 @@
 </template>
 
 <script lang="ts">
-import { Component, ModelSync, Prop } from 'vue-property-decorator';
+import { Component, ModelSync, Prop, Ref } from 'vue-property-decorator';
 import KwUi from '../KwUi';
 
 @Component({
   name: 'KwInputField',
 })
 export default class KwInputField extends KwUi {
+  @Ref()
+  private readonly refInput!: HTMLInputElement;
+
   @ModelSync('value', 'input')
   private model!: unknown;
 
@@ -34,6 +38,14 @@ export default class KwInputField extends KwUi {
 
   @Prop()
   private disabled!: boolean;
+
+  public focus() {
+    this.refInput.focus();
+  }
+
+  public click() {
+    this.refInput.click();
+  }
 
   private onInput(value: string) {
     this.model = value;

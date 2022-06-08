@@ -1,6 +1,6 @@
 <template>
   <div class="kw-calendar">
-    <button class="display-button" @click="openSelectLayer()">📅 {{ displayText }}</button>
+    <button ref="refButton" class="display-button" @click="openSelectLayer()">📅 {{ displayText }}</button>
     <KwContainerTransition>
       <KwContainer v-if="show" container-max-width="768px">
         <template #header>
@@ -87,7 +87,7 @@
 </template>
 
 <script lang="ts">
-import { Component, ModelSync, Prop } from 'vue-property-decorator';
+import { Component, ModelSync, Prop, Ref } from 'vue-property-decorator';
 import KwUi from './KwUi';
 
 type CellDate =
@@ -106,6 +106,8 @@ type CellDate =
   name: 'KwDateTimePicker',
 })
 export default class KwDateTimePicker extends KwUi {
+  @Ref() private refButton!: HTMLButtonElement;
+
   private days = '일월화수목금토'.split('');
 
   private show = false;
@@ -166,6 +168,14 @@ export default class KwDateTimePicker extends KwUi {
 
   get isPeriodType() {
     return this.type === 'period';
+  }
+
+  public focus() {
+    this.refButton.focus();
+  }
+
+  public click() {
+    this.refButton.click();
   }
 
   private hourOptions = (() => {
